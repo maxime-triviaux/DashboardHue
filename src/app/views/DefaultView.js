@@ -15,29 +15,17 @@ module.exports = Backbone.View.extend({
 
 
   initialize: function() {
+    var bridge = new BridgeModel({
+      ip: '192.168.1.10',
+      token: "SzeJNNH4ZEB636mc4NxuBdDKcLMkgZ61TYyCxyS3"
+    });
+    this.lights = bridge.getLights();
   },
 
-  render: function(render=false) {
-    if(render==false)
-    {
-      var that = this;
-      var bridge = new BridgeModel({
-        ip: '192.168.1.10',
-        token: "SzeJNNH4ZEB636mc4NxuBdDKcLMkgZ61TYyCxyS3"
-      });
-      bridge.getLights(function(lights){
-        //console.log(lights);
-        that.lights = lights;
-        that.render(true);
-      });
-    }
-    else
-    {
-      console.log(this.lights);
+  render: function() {
       var compiled = template({lights: this.lights.toJSON()});
       $(this.el).html(compiled);
       return this;
-    }
   }
 
 

@@ -21,19 +21,19 @@ module.exports = Backbone.Model.extend({
 
 
   /*
-  * @param callback {function} Executed when ajax query is done
   * @return {LightCollection} Collection of all bridge's lights
   **/
-  getLights: function(callback){
+  getLights: function(){
     var lightCollection = new LightCollection();
     $.ajax({
-      url: this.get('url')+'/lights'
+      url: this.get('url')+'/lights',
+      async: false
     }).done(function(data){
       $.each(data, function(i, item){
         lightCollection.add(new LightModel(item));
       });
-      callback(lightCollection);
     });
+    return lightCollection;
   }
 
 });
