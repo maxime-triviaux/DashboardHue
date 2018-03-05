@@ -1,28 +1,31 @@
-
-<div class="row">
-{{#each lights}}
-  <div class="col m6">
-    <div class="card blue-grey darken-1">
-      <div class="card-content white-text">
-        <span class="card-title">{{this.name}}</span>
-        <ul>
-          <li>- {{this.manufacturername}}</li>
-          <li>- {{this.modelid}}</li>
-          <li>- {{this.productid}}</li>
-          <li>- {{this.uniqueid}}</li>
-        </ul>
-      </div>
-      <div class="card-action">
-        <div class="switch">
-          <label>
-            Off
-            <input type="checkbox">
-            <span class="lever"></span>
-            On
-          </label>
+{{#if lights }}
+  <div class="row">
+    {{#each lights}}
+      <div class="col m6">
+        <div class="card blue-grey darken-1">
+          <div class="card-content white-text">
+            <span class="card-title">{{this.name}}</span>
+            <ul>
+              <li>- {{this.manufacturername}}</li>
+              <li>- {{this.modelid}}</li>
+              <li>- {{this.productid}}</li>
+              <li>- {{this.uniqueid}}</li>
+            </ul>
+          </div>
+          <div class="card-action">
+            <div class="switch">
+              <label>
+                Off
+                <input type="checkbox">
+                <span class="lever"></span>
+                On
+              </label>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
+    {{/each}}
   </div>
-{{/each}}
-</div>
+{{else}}
+  <button class="btn" id="test">Click</button>
+{{/if}}

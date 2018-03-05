@@ -1,4 +1,3 @@
-//TodoView
 var $ = require('jquery');
 var _ = require('underscore');
 var Backbone = require('Backbone');
@@ -11,6 +10,7 @@ module.exports = Backbone.View.extend({
 
   el: $('#app'),
   events:{
+    'click #test': 'test'
   },
 
 
@@ -23,9 +23,13 @@ module.exports = Backbone.View.extend({
   },
 
   render: function() {
-      var compiled = template({lights: this.lights.toJSON()});
-      $(this.el).html(compiled);
-      return this;
+    var compiled = template({lights: this.lights.toJSON()});
+    $(this.el).html(compiled);
+    return this;
+  },
+
+  test: function(e){
+    Materialize.toast('Le Bridge Hue est Introuvable', 4000);
   }
 
 

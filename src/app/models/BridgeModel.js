@@ -1,4 +1,3 @@
-//Todo Model
 var $ = require('jquery');
 var _ = require('underscore');
 var Backbone = require('Backbone');
@@ -17,6 +16,23 @@ module.exports = Backbone.Model.extend({
 
   initialize: function() {
     this.set('url', 'http://'+this.get('ip')+'/api/'+this.get('token'));
+  },
+
+
+  /*
+  * @return {boolean} Is Bridge Unreachable
+  **/
+  isUnreachable(){
+    var isUnreachable = false;
+    $.ajax({
+      url: this.get('url')+'/lights',
+      async: false
+    }).done((data) => {
+      isUnreachable = false;
+    }).fail((error) => {
+      isUnreachable = true;
+    });
+    return isUnreachable;
   },
 
 
