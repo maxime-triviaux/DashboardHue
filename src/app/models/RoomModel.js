@@ -6,16 +6,12 @@ var Backbone = require('Backbone');
 module.exports = Backbone.Model.extend({
 
   defaults:{
-    id: '',
-    name: '',
-    intensity: ''
+    id:'',
+    name:'',
+    ligths: []
   },
 
   initialize: function() {
-  },
-
-  setIntensity: function() {
-
   }
 
 });

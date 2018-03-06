@@ -10,27 +10,32 @@ module.exports = Backbone.View.extend({
 
   el: $('#app'),
   events:{
-    'click #test': 'test'
   },
 
 
   initialize: function() {
+
     var bridge = new BridgeModel({
       ip: '192.168.1.10',
       token: "SzeJNNH4ZEB636mc4NxuBdDKcLMkgZ61TYyCxyS3"
     });
+
+    this.errMessage = '';
+    if(bridge.isUnreachable()) this.errMessage = 'Le Bridge est Injoignable';
     this.lights = bridge.getLights();
+
   },
 
   render: function() {
-    var compiled = template({lights: this.lights.toJSON()});
+    var compiled = template({
+      errMessage: this.errMessage,
+      lights: this.lights.toJSON()
+    });
     $(this.el).html(compiled);
     return this;
-  },
-
-  test: function(e){
-    Materialize.toast('Le Bridge Hue est Introuvable', 4000);
   }
+
+
 
 
 });
